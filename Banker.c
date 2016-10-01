@@ -1,7 +1,10 @@
+/*
+Implementation of Banker's algorithm for deadlock avoidance
+*/
 #include <stdio.h>
 #include <stdlib.h>
 
-//void Safesequence(int **allocation, int **max, int **need, int *available, int pn, int rn);
+
 int main(){
 	int pn, rn;
 	int i,j;
@@ -55,7 +58,6 @@ int main(){
 	printf("Availability R1 %d R2 %d R3 %d\n", available[0],available[1],available[2]);
 	printf("--------------------------------------------------------------\n");
 	
-	//Safesequence(allocation,max,need,available,pn,rn);
 
 	int work[rn];
 	int finish[pn];
@@ -100,48 +102,3 @@ while(c1!=pn){
 	return 0;
 
 }
-
-/*void Safesequence(int **allocation, int **max, int **need, int *available, int pn, int rn){
-	int work[rn];
-	int finish[pn];
-	int sequence[pn];
-	int i,j;
-	int k = 0, c1 = 0, c2;
-	int flag=0;
-	for(i=0; i<pn; i++)
-		finish[i] = 0;
-	for(j=0; j<rn; j++)
-		work[j] = available[j];
-while(c1!=pn){
-	c2 = c1;
-	for(i=0; i<pn; i++){
-		int count = 0;
-		for(j=0; j<rn; j++){
-			if(need[i][j]<=work[j])	
-				count++;
-		}
-		if(count==rn && finish[i]==0){
-			for(j=0; j<rn; j++)
-				work[j] = work[j] + allocation[i][j];
-			finish[i] = 1;
-			c1++;
-			sequence[k++] = i;
-		}
-	}
-	if(c1 == c2){
-		printf("Not a safe sequence...\n");
-			exit(0);
-	}
-}
-	
-	for(i=0; i<pn; i++){
-		printf("Safe Sequence\n");
-		printf("P%d Availablity of ",sequence[i]+1);
-		for(j=0; j<rn; j++){
-			available[j] += allocation[sequence[i]][j];
-			printf("R%d %d ",j+1,available[j]);		
-		}
-		printf("\n");
-	}
-}*/	
-
